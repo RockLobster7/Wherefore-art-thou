@@ -5,12 +5,29 @@ Make a function that looks through an array of objects (first argument) and retu
 For example, if the first argument is [{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], and the second argument is { last: "Capulet" }, then you must return the third object from the array (the first argument), because it contains the property and its value, that was passed on as the second argument.
 */
 
+//https://forum.freecodecamp.org/t/freecodecamp-algorithm-challenge-guide-wherefore-art-thou/16092
+
+//https://stackoverflow.com/questions/675231/how-do-i-access-properties-of-a-javascript-object-if-i-dont-know-the-names
 
 function whatIsInAName(collection, source) {
     // What's in a name?
     var arr = [];
     // Only change code below this line
+
+ 
+    // console.log(Object.keys(source));
+
+    Object.keys(collection).forEach(function (key) {
+        console.log(collection[key]);
+
+     
+      });
+
+  
     
+    // arr = collection.filter(function (element) {
+    //     return element != element.hasOwnProperty(source);
+    // });
     
     // Only change code above this line
     return arr;
