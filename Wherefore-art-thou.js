@@ -32,9 +32,9 @@ function whatIsInAName(collection, source) {
   var valsArray = [];
 
   Object.keys(source).map(function (key) {
-    for (let prop in source) {
+    for ( prop in source) {
 
-      valsArray.push(prop);
+      valsArray.push(key);
       valsArray.push(source[key]);
       return valsArray;
     }
@@ -51,17 +51,32 @@ function whatIsInAName(collection, source) {
 
     // console.log(obj);
 
+
     // console.log(collection[key]);   ///output
     //process each object
     for (var prop in obj) { //now process each value pair
       if (obj.hasOwnProperty(valsArray[0]) && obj[prop] == valsArray[1]) {
 
+        if (valsArray[2]) {
+          if (obj.hasOwnProperty(valsArray[2]) && obj[prop] == valsArray[1]) {
+          console.log("we have two key pairs now to deal with here");
+          console.log(collection[key]);
+          }
+
+        } else {
+          console.log(collection[key]);   ///output one key pair
+        }
+
+
+
+
+        // console.log(collection[key]);   ///output
 
         // if (obj.hasOwnProperty(Object.keys(source))) {
 
         // if (obj[prop] == "Capulet") {
         // console.log(collection[key]);
-        console.log(collection[key]);   ///output
+
       }
       // console.log(prop + " = " + obj[prop]);  //stuff here
       // } 
