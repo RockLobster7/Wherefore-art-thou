@@ -9,35 +9,123 @@ For example, if the first argument is [{ first: "Romeo", last: "Montague" }, { f
 
 //https://stackoverflow.com/questions/675231/how-do-i-access-properties-of-a-javascript-object-if-i-dont-know-the-names
 
+//https://stackoverflow.com/questions/33232823/javascript-compare-two-objects-and-get-key-value-pair
+
+//https://stackoverflow.com/questions/201183/how-to-determine-equality-for-two-javascript-objects
+
+//https://stackoverflow.com/questions/32487402/checking-if-a-javascript-object-contains-the-same-key-value-pairs-as-another
+
+//https://stackoverflow.com/questions/35948335/what-is-a-good-approach-to-compare-two-map-objects-for-equality-in-javascript
+
+
 function whatIsInAName(collection, source) {
-    // What's in a name?
-    var arr = [];
-    // Only change code below this line
+  // What's in a name?
+  var arr = [];
+  // Only change code below this line
+  // console.log(source.hasOwnProperty('a'));
 
- 
-    // console.log(Object.keys(source));
+  // console.log(Object.keys(source));
 
-    Object.keys(collection).forEach(function (key) {
-        console.log(collection[key]);
 
-     
-      });
+  //array ***************
 
-  
-    
-    // arr = collection.filter(function (element) {
-    //     return element != element.hasOwnProperty(source);
-    // });
-    
-    // Only change code above this line
-    return arr;
-  }
+  var valsArray = [];
 
-  
-  console.log(whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" })); // should return [{ first: "Tybalt", last: "Capulet" }].
+  Object.keys(source).map(function (key) {
+    for (let prop in source) {
 
-  console.log(whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 })); // should return [{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }].
+      valsArray.push(prop);
+      valsArray.push(source[key]);
+      return valsArray;
+    }
 
-  console.log(whatIsInAName([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "b": 2 })); // should return [{ "a": 1, "b": 2 }, { "a": 1, "b": 2, "c": 2 }].
+  });
+  // console.log(valsArray);
 
-  console.log(whatIsInAName([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "c": 2 })); // should return [{ "a": 1, "b": 2, "c": 2 }].
+  // Object.keys(source).forEach(function (key) {
+  //   console.log(source[key]);
+  // });
+
+  Object.keys(collection).forEach(function (key) { //separate each object from the array
+    var obj = collection[key]; //now we have an object with key value pairs in it
+
+    // console.log(obj);
+
+    // console.log(collection[key]);   ///output
+    //process each object
+    for (var prop in obj) { //now process each value pair
+      if (obj.hasOwnProperty(valsArray[0]) && obj[prop] == valsArray[1]) {
+
+
+        // if (obj.hasOwnProperty(Object.keys(source))) {
+
+        // if (obj[prop] == "Capulet") {
+        // console.log(collection[key]);
+        console.log(collection[key]);   ///output
+      }
+      // console.log(prop + " = " + obj[prop]);  //stuff here
+      // } 
+    }
+  });
+
+
+  // arr = collection.filter(function (element) {
+  //     return element != element.hasOwnProperty(source);
+  // });
+
+  // Only change code above this line
+  return arr;
+}
+
+
+console.log(whatIsInAName([{
+  first: "Romeo",
+  last: "Montague"
+}, {
+  first: "Mercutio",
+  last: null
+}, {
+  first: "Tybalt",
+  last: "Capulet"
+}], {
+  last: "Capulet",
+})); // should return [{ first: "Tybalt", last: "Capulet" }].
+
+console.log(whatIsInAName([{
+  "a": 1
+}, {
+  "a": 1
+}, {
+  "a": 1,
+  "b": 2
+}], {
+  "a": 1
+})); // should return [{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }].
+
+console.log(whatIsInAName([{
+  "a": 1,
+  "b": 2
+}, {
+  "a": 1
+}, {
+  "a": 1,
+  "b": 2,
+  "c": 2
+}], {
+  "a": 1,
+  "b": 2
+})); // should return [{ "a": 1, "b": 2 }, { "a": 1, "b": 2, "c": 2 }].
+
+console.log(whatIsInAName([{
+  "a": 1,
+  "b": 2
+}, {
+  "a": 1
+}, {
+  "a": 1,
+  "b": 2,
+  "c": 2
+}], {
+  "a": 1,
+  "c": 2
+})); // should return [{ "a": 1, "b": 2, "c": 2 }].
