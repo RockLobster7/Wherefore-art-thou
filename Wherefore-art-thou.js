@@ -5,88 +5,40 @@ Make a function that looks through an array of objects (first argument) and retu
 For example, if the first argument is [{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], and the second argument is { last: "Capulet" }, then you must return the third object from the array (the first argument), because it contains the property and its value, that was passed on as the second argument.
 */
 
-//https://forum.freecodecamp.org/t/freecodecamp-algorithm-challenge-guide-wherefore-art-thou/16092
-
-//https://stackoverflow.com/questions/675231/how-do-i-access-properties-of-a-javascript-object-if-i-dont-know-the-names
-
-//https://stackoverflow.com/questions/33232823/javascript-compare-two-objects-and-get-key-value-pair
-
-//https://stackoverflow.com/questions/201183/how-to-determine-equality-for-two-javascript-objects
-
-//https://stackoverflow.com/questions/32487402/checking-if-a-javascript-object-contains-the-same-key-value-pairs-as-another
-
-//https://stackoverflow.com/questions/35948335/what-is-a-good-approach-to-compare-two-map-objects-for-equality-in-javascript
-
-
 function whatIsInAName(collection, source) {
   // What's in a name?
   var arr = [];
   // Only change code below this line
-  // console.log(source.hasOwnProperty('a'));
 
-  // console.log(Object.keys(source));
-
-
-  //array ***************
-
-  var valsArray = [];
-
+  //convert the 'source' object into an array to make it easier to work with  
+  var sourceArray = [];
   Object.keys(source).map(function (key) {
-    for ( prop in source) {
-
-      valsArray.push(key);
-      valsArray.push(source[key]);
-      return valsArray;
+    for (prop in source) {
+      sourceArray.push(key, source[key]);
+      return;
     }
-
   });
-  // console.log(valsArray);
 
-  // Object.keys(source).forEach(function (key) {
-  //   console.log(source[key]);
-  // });
+  //separate each object from the collection array
+  Object.keys(collection).forEach(function (key) { 
 
-  Object.keys(collection).forEach(function (key) { //separate each object from the array
-    var obj = collection[key]; //now we have an object with key value pairs in it
+    //now we have an object with key value pairs we can work with
+    var obj = collection[key]; 
 
-    // console.log(obj);
+    //now process each value pair
+    for (var prop in obj) { 
+      if (obj.hasOwnProperty(sourceArray[0]) && obj[prop] == sourceArray[1]) {
 
-
-    // console.log(collection[key]);   ///output
-    //process each object
-    for (var prop in obj) { //now process each value pair
-      if (obj.hasOwnProperty(valsArray[0]) && obj[prop] == valsArray[1]) {
-
-        if (valsArray[2]) {
-          if (obj.hasOwnProperty(valsArray[2]) && obj[prop] == valsArray[1]) {
-          console.log("we have two key pairs now to deal with here");
-          console.log(collection[key]);
+        if (sourceArray[2]) {
+          if (obj.hasOwnProperty(sourceArray[2]) && obj[prop] == sourceArray[1]) {
+            arr.push(collection[key]); //output two 'source' key pairs
           }
-
         } else {
-          console.log(collection[key]);   ///output one key pair
+          arr.push(collection[key]); //output one 'source' key pair
         }
-
-
-
-
-        // console.log(collection[key]);   ///output
-
-        // if (obj.hasOwnProperty(Object.keys(source))) {
-
-        // if (obj[prop] == "Capulet") {
-        // console.log(collection[key]);
-
       }
-      // console.log(prop + " = " + obj[prop]);  //stuff here
-      // } 
     }
   });
-
-
-  // arr = collection.filter(function (element) {
-  //     return element != element.hasOwnProperty(source);
-  // });
 
   // Only change code above this line
   return arr;
